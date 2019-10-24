@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean name="user" class="com.ujy.pojo.User" id="user" scope="singleton"
+  init-method="init" destroy-method="destory"/>
+    <bean class="com.ujy.pojo.Boy" id="boy" >
+        <property name="name" value="呆呆"></property>
+        <property name="age" value="18"></property>
+<!--              <property name="girl" ref="girl"/>-->
+        <property name="girl">
+            <ref bean="girl"/>
+        </property>
+
+    </bean>
+    <bean class="com.ujy.pojo.Girl" id="girl">
+       <constructor-arg name="name" value="敏敏"/>
+        <constructor-arg name="age" value="18"/>
+    </bean>
+    <bean class="com.ujy.pojo.CollectionBean" id="collectionBean">
+        <property name="arr">
+            <array>
+                <value>tom</value>
+                <value>30</value>
+                <value>girl</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>呆呆</value>
+                <value>20</value>
+                <value>boy</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="name" value="悟空"></entry>
+                <entry key="age" value="100"></entry>
+                <entry key="sex" value="man"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="name">大白</prop>
+                <prop key="age">80</prop>
+                <prop key="sex">men</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="com.ujy.controller.UserController" id="userController">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean class="com.ujy.service.impl.UserviceImpl" id="userService"></bean>
+<!--    <bean class="com.ujy.controller.UserController" id="userController">-->
+<!--        <property name="userService" ref="userService"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.ujy.service.impl.UserviceImpl" id="userService"></bean>-->
+</beans>
